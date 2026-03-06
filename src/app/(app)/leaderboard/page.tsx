@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, Variants} from "framer-motion";
+import { motion} from "framer-motion";
 import { Trophy, Medal, Crown, ShieldAlert } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
-const containerVariants: Variants = {
+const containerVariants: any = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.05 } }
 };
 
-const itemVariants: Variants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } };
+const itemVariants: any = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
 
 export default function LeaderboardPage() {
   const [players, setPlayers] = useState<any[]>([]);

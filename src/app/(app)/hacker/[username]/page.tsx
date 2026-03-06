@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { motion, Variants} from "framer-motion";
+import { motion} from "framer-motion";
 import { User, Activity, Shield, Cpu, Target, ShieldAlert, Award } from "lucide-react";
 
 export default function PublicProfilePage() {
