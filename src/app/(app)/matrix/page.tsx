@@ -10,7 +10,7 @@ import type { User as SupabaseUser } from "@supabase/supabase-js";
 const AVAILABLE_MODELS = ["GPT-NeoX-Secure", "Llama-Guard-Pro", "Claude-Vault-v2", "Titan-Lock-X"];
 
 const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const rowVariants = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const rowVariants = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } };
 
 export default function MatrixPage() {
   const [user, setUser] = useState<SupabaseUser | null>(null);
