@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants} from "framer-motion";
 import { Send, Terminal, ArrowLeft, CheckCircle2, Info, Cpu, X, Lock } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
