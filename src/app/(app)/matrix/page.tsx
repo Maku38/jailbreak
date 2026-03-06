@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Database, ShieldOff, Minus, Search, Filter, Lock } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
@@ -9,8 +9,8 @@ import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 const AVAILABLE_MODELS = ["GPT-NeoX-Secure", "Llama-Guard-Pro", "Claude-Vault-v2", "Titan-Lock-X"];
 
-const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } } as const;
-const rowVariants = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } } as const;
+const containerVariants: Variants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
+const rowVariants: Variants = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
 
 export default function MatrixPage() {
   const [user, setUser] = useState<SupabaseUser | null>(null);
