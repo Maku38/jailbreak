@@ -20,8 +20,8 @@ const activityLog = [
   { id: 2, action: "Exploit Failed", target: "Claude-Vault-v2", time: "5 hours ago", status: "failed", points: "0" },
 ];
 
-const containerVariants: any = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const itemVariants: any = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } } as const;
+const itemVariants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } } as const;
 
 export default function ProfilePage() {
   const [user, setUser] = useState<SupabaseUser | null>(null);

@@ -8,12 +8,12 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
-const containerVariants: any = {
+const containerVariants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.05 } }
-};
+} as const;
 
-const itemVariants: any = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const itemVariants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } } as const;
 
 export default function LeaderboardPage() {
   const [players, setPlayers] = useState<any[]>([]);
