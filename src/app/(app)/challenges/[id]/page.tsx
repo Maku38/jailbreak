@@ -63,7 +63,7 @@ export default function ChallengePage() {
       if (response.success) {
         setIsSuccess(true);
         setPointsAwarded(response.awardedPoints);
-        setSolveStatus(response.status);
+        setSolveStatus(response.status ?? "");
       }
     } catch (error) {
       setChat((prev) => [...prev, { role: "ai", text: "CONNECTION INTERRUPTED. SERVER REJECTED PAYLOAD." }]);
