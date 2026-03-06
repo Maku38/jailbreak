@@ -8,7 +8,8 @@ import { createClient } from "@/lib/supabase/client";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 const containerVariants: Variants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const itemVariants: Variants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const itemVariants: Variants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0 } };
+const itemTransition = { type: "spring" as const, stiffness: 300, damping: 24 };
 
 const difficultyConfig: Record<string, { color: string; requiredPts: number }> = {
   "Easy": { color: "text-[var(--color-primary-neon)] border-[var(--color-primary-neon)] bg-[var(--color-primary-neon)]/10", requiredPts: 0 },
@@ -58,7 +59,7 @@ export default function DashboardPage() {
     const isLocked = !isBounty && userPoints < config.requiredPts; // Bounties are never level-locked!
 
     return (
-      <motion.div variants={itemVariants} className="group relative h-full">
+      <motion.div variants={itemVariants} transition={itemTransition} className="group relative h-full">
         <div className={`relative h-full flex flex-col p-6 rounded-xl border transition-all duration-300 overflow-hidden ${
           isLocked 
             ? "bg-black/60 border-white/5 opacity-75 grayscale-[50%]" 

@@ -10,7 +10,8 @@ import type { User as SupabaseUser } from "@supabase/supabase-js";
 const AVAILABLE_MODELS = ["GPT-NeoX-Secure", "Llama-Guard-Pro", "Claude-Vault-v2", "Titan-Lock-X"];
 
 const containerVariants: Variants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const rowVariants: Variants = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const rowVariants: Variants = { hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0 } };
+const rowTransition = { type: "spring" as const, stiffness: 300, damping: 24 };
 
 export default function MatrixPage() {
   const [user, setUser] = useState<SupabaseUser | null>(null);
@@ -103,7 +104,7 @@ export default function MatrixPage() {
               <div className="p-8 text-center text-zinc-500 font-mono text-sm">No target data found in the database.</div>
             ) : (
               challenges.map((challenge) => (
-                <motion.div key={challenge.id} variants={rowVariants} className="grid grid-cols-5 border-b border-white/5 hover:bg-white/5 transition-colors last:border-0">
+                <motion.div key={challenge.id} variants={rowVariants} transition={rowTransition} className="grid grid-cols-5 border-b border-white/5 hover:bg-white/5 transition-colors last:border-0">
                   {/* Challenge Name Column */}
                   <div className="p-4 border-r border-white/10 flex items-center bg-black/20">
                     <span className="font-mono font-medium text-white text-sm truncate">{challenge.title}</span>

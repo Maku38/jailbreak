@@ -13,7 +13,8 @@ const containerVariants: Variants = {
   show: { opacity: 1, transition: { staggerChildren: 0.05 } }
 };
 
-const itemVariants: Variants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const itemVariants: Variants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0 } };
+const itemTransition = { type: "spring" as const, stiffness: 300, damping: 24 };
 
 export default function LeaderboardPage() {
   const [players, setPlayers] = useState<any[]>([]);
@@ -135,6 +136,7 @@ export default function LeaderboardPage() {
                 <motion.div 
                   key={player.id}
                   variants={itemVariants}
+                  transition={itemTransition}
                   className={`grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-white/5 transition-colors ${
                     player.isCurrentUser 
                       ? "bg-[var(--color-primary-neon)]/10 border-l-4 border-l-[var(--color-primary-neon)]" 

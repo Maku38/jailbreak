@@ -21,7 +21,8 @@ const activityLog = [
 ];
 
 const containerVariants: Variants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const itemVariants: Variants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const itemVariants: Variants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
+const itemTransition = { type: "spring" as const, stiffness: 300, damping: 24 };
 
 export default function ProfilePage() {
   const [user, setUser] = useState<SupabaseUser | null>(null);
@@ -96,7 +97,7 @@ export default function ProfilePage() {
       <motion.div variants={containerVariants} initial="hidden" animate="show" className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Left Column: ID Card & Overall Stats */}
-        <motion.div variants={itemVariants} className="space-y-6">
+        <motion.div variants={itemVariants} transition={itemTransition} className="space-y-6">
           <div className="bg-[var(--color-surface)] border border-white/10 rounded-xl p-6 relative overflow-hidden group shadow-lg">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <Shield size={100} />
@@ -146,7 +147,7 @@ export default function ProfilePage() {
         </motion.div>
 
         {/* Right Column: Skills & Activity Log */}
-        <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6">
+        <motion.div variants={itemVariants} transition={itemTransition} className="lg:col-span-2 space-y-6">
           <div className="bg-[var(--color-surface)] border border-white/10 rounded-xl p-6 shadow-lg">
             <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
               <Cpu className="text-zinc-400" size={20} />

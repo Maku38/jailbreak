@@ -8,7 +8,8 @@ import Link from "next/link";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 const containerVariants: Variants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const itemVariants: Variants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const itemVariants: Variants = { hidden: { opacity: 0, scale: 0.95, y: 10 }, show: { opacity: 1, scale: 1, y: 0 } };
+const itemTransition = { type: "spring" as const, stiffness: 300, damping: 24 };
 
 export default function AchievementsPage() {
   const [user, setUser] = useState<SupabaseUser | null>(null);
@@ -114,7 +115,7 @@ export default function AchievementsPage() {
           const isUnlocked = badge.unlocked;
           
           return (
-            <motion.div key={badge.id} variants={itemVariants}>
+            <motion.div key={badge.id} variants={itemVariants} transition={itemTransition}>
               <div className={`relative h-full p-6 rounded-xl border transition-all duration-300 overflow-hidden ${isUnlocked ? "bg-[var(--color-surface)] border-[var(--color-primary-neon)]/30 shadow-[0_4px_20px_rgba(0,255,157,0.05)]" : "bg-black/40 border-white/5 opacity-70 grayscale-[50%]"}`}>
                 <div className="flex justify-between items-start mb-4 relative z-10">
                   <div className={`p-3 rounded-lg ${isUnlocked ? "bg-[var(--color-primary-neon)]/10 text-[var(--color-primary-neon)]" : "bg-white/5 text-zinc-500"}`}>
